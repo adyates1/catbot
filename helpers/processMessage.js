@@ -61,12 +61,13 @@ module.exports = (event) => {
     if(message.charAt(0) == '!'){
       if(message == "!cat"){
         sendImageMessage(senderId, images.imgArray[Math.floor(Math.random() * images.imgArray.length)]);
+      }if(message.split(" ")[0] == "!reaction"){
+        sendImageMessage(senderId, images.reactionArray[Math.floor(Math.random() * images.reactionArray.length)]);
       }
     }else{
       result = response.result.fulfillment.speech;
       sendTextMessage(senderId, result);
     }
-
 
   });
   apiaiSession.on('error', error => console.log(error));
