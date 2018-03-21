@@ -18,7 +18,7 @@ app.get('/', verification)
 
 app.post('/', messageWebhook)
 
-app.listen(80, () => console.log('Webhook server is listening, port 3000'));
+app.listen(3000, () => console.log('Webhook server is listening, port 3000'));
 
 const verificationController = require('./controllers/verification');
 const messageWebhookController = require('./controllers/messageWebhook');
