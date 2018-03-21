@@ -3,10 +3,10 @@ const apiAiClient = require('apiai')(API_AI_TOKEN);
 const FACEBOOK_ACCESS_TOKEN = 'EAAZA388K59q8BAF1F5zYUfP8TCezRUuUiO57zb4cUkyMa60QQhm8yIMPZAZBrEdUKlaRULwvHMayuse4LeazPois5NjBj3uhhNnaDT1yckfbmqiQXDtZBIZC1pD9rPZAfgoR1SytWuOt4lIS8nakljNp5Mj04fp4cEe2LvdIEynDtTmuUVPPy7';
 const request = require('request');
 var fs = require('fs');
-var obj;
+var images;
 fs.readFile('./imgs/images.json', 'utf8', function(err, data) {
   if (err) throw err;
-  obj = JSON.parse(data);
+  images = JSON.parse(data);
 });
 
 const sendTextMessage = (senderId, text) => {
@@ -58,14 +58,15 @@ module.exports = (event) => {
   });
   apiaiSession.on('response', (response) => {
     result = " ";
-    if (message == "Hi") {
-      sendImageMessage(senderId, obj.imgArray[0]);
-
-    } else {
+    if(message.charAt(0) == '!'){
+      if(message == "!cat"){
+        sendImageMessage(senderId, images.imgArray[Math.floor(Math.random() * images.imgArray.length)]);
+      }
+    }else{
       result = response.result.fulfillment.speech;
       sendTextMessage(senderId, result);
-
     }
+
 
   });
   apiaiSession.on('error', error => console.log(error));
