@@ -16,9 +16,16 @@ const sendTextMessage = (senderId, text) => {
 module.exports = (event) => {
  const senderId = event.sender.id;
  const message = event.message.text;
-const apiaiSession = apiAiClient.textRequest(message, {sessionId: ''});
+const apiaiSession = apiAiClient.textRequest(message, {sessionId: 'sessionId'});
 apiaiSession.on('response', (response) => {
- const result = response.result.fulfillment.speech;
+  result = "dsadas";
+  console.log(message);
+  if(message == "Hi"){
+    result = "Memes";
+  }else{
+    result = response.result.fulfillment.speech;
+  }
+
 sendTextMessage(senderId, result);
  });
 apiaiSession.on('error', error => console.log(error));
