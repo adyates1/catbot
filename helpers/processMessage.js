@@ -61,11 +61,11 @@ module.exports = (event) => {
     if (message.charAt(0) == '!') {
       if (message == "!cat") {
         sendImageMessage(senderId, images.imgArray[Math.floor(Math.random() * images.imgArray.length)]);
-      }else if (message.split(" ")[0] == "!reaction") {
+      } else if (message.split(" ")[0] == "!reaction") {
         sendImageMessage(senderId, images.reactionArray[Math.floor(Math.random() * images.reactionArray.length)]);
-      }else if (message=="!help") {
+      } else if (message == "!help") {
         sendTextMessage(senderId, "!cat returns a photo of a cat, !reaction returns a cat themed reaction");
-      }else{
+      } else {
         sendTextMessage(senderId, "That is not a valid command for a list of commands please use !help");
       }
     } else {
